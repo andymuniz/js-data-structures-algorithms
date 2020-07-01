@@ -1,0 +1,19 @@
+{
+  "name": "js-data-structures-algorithms",
+  "version": "1.0.0",
+  "description": "Studying/Reviewing Data Structures and Algorithms with JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andymuniz/js-data-structures-algorithms.git"
+  },
+  "author": "Andy Muniz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andymuniz/js-data-structures-algorithms/issues"
+  },
+  "homepage": "https://github.com/andymuniz/js-data-structures-algorithms#readme"
+}
