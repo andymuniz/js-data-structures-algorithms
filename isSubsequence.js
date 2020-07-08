@@ -11,18 +11,12 @@ function isSubsequence(str1, str2) {
     let i = 0;
     let j = 0;
 
-    while (i < str1.length) {
-        if(j >= str2.length)
-            return false;
-        if (str1.charAt(i) === str2.charAt(j)) {
-            i++
-            j++
-        }
-        else {
-            j++
-        }
+    while (j < str2.length) {
+        if (str1.charAt(i) === str2.charAt(j)) i++
+        if (i === str1.length) return true;
+        j++
     }
-    return true;
+    return false;
 }
 
 module.exports = isSubsequence;
