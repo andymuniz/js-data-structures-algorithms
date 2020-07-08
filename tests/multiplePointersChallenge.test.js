@@ -1,4 +1,4 @@
-const countUniqueValues = require('./multiplePointersChallenge');
+const countUniqueValues = require('../multiplePointersChallenge');
 
 test('count unique values in array', () => {
     expect(countUniqueValues([1, 1, 1, 1, 1, 2])).toBe(2)
