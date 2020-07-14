@@ -23,7 +23,32 @@ function binarySearch(array, searchVal) {
     return -1;
 }
 
+function stringSearch(str, searchTerm) {
+    if(searchTerm.length > str.length) return 0;
+    let count = 0;
+
+    for(let i = 0; i < str.length; i++) {
+        for(let j = 0; j < searchTerm.length; j++) {
+            if(str[i] !== searchTerm[j]){
+                if(j > 0)
+                    --i;
+                break;
+            }
+
+            // End of searchTerm and a match
+            if (j === searchTerm.length - 1) {
+                count++;
+                break;
+            }
+            i++;    // Increment outer loop
+        }
+    }
+
+    return count;
+}
+
 module.exports = {
     linearSearch,
-    binarySearch
+    binarySearch,
+    stringSearch
 }

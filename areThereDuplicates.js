@@ -42,5 +42,3 @@ areThereDuplicates = function(...myArgs) {
 // That would be O(n log n);
 
 module.exports = areThereDuplicates;
-
-areThereDuplicates(1,2,2)
