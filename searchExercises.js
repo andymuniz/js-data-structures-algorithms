@@ -26,24 +26,16 @@ function binarySearch(array, searchVal) {
 function stringSearch(str, searchTerm) {
     if(searchTerm.length > str.length) return 0;
     let count = 0;
-
-    for(let i = 0; i < str.length; i++) {
+    for(let i = 0; i < str.length; i++){
         for(let j = 0; j < searchTerm.length; j++) {
-            if(str[i] !== searchTerm[j]){
-                if(j > 0)
-                    --i;
+            if(searchTerm[j] !== str[i+j]){
                 break;
             }
-
-            // End of searchTerm and a match
-            if (j === searchTerm.length - 1) {
+            if(searchTerm.length - 1 === j) {
                 count++;
-                break;
             }
-            i++;    // Increment outer loop
         }
     }
-
     return count;
 }
 
