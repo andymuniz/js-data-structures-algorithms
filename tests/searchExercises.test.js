@@ -1,4 +1,4 @@
-const { linearSearch, binarySearch, stringSearch } = require('../searchExercises')
+const { linearSearch, binarySearch, stringSearch, KMPSearch } = require('../searchExercises')
 
 test('should linearSearch', () => {
     expect(linearSearch([10, 15, 20, 25, 30], 15)).toBe(1)
@@ -24,7 +24,9 @@ test('should stringSearch', () => {
     expect(stringSearch("wowwow", "ow")).toBe(2)
     expect(stringSearch("eggseggeggsegg", "egg")).toBe(4)
     expect(stringSearch("eggseggeggsegg", "eggs")).toBe(2)
-    expect(stringSearch("lololololol", "lol")).toBe(3)
-
+    expect(stringSearch("lololololol", "lol")).toBe(5)
 })
 
+test('should KMPSearch', () => {
+    expect(KMPSearch("lola", "holalolola")).toBe(6)
+})
