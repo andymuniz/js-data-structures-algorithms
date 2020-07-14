@@ -23,15 +23,18 @@ function binarySearch(array, searchVal) {
     return -1;
 }
 
+/**
+ * Naive algorithm O(m*n)
+ */
 function stringSearch(str, searchTerm) {
-    if(searchTerm.length > str.length) return 0;
+    if (searchTerm.length > str.length) return 0;
     let count = 0;
-    for(let i = 0; i < str.length; i++){
-        for(let j = 0; j < searchTerm.length; j++) {
-            if(searchTerm[j] !== str[i+j]){
+    for (let i = 0; i < str.length; i++) {
+        for (let j = 0; j < searchTerm.length; j++) {
+            if (searchTerm[j] !== str[i + j]) {
                 break;
             }
-            if(searchTerm.length - 1 === j) {
+            if (searchTerm.length - 1 === j) {
                 count++;
             }
         }
@@ -39,8 +42,49 @@ function stringSearch(str, searchTerm) {
     return count;
 }
 
+/**
+ * Knuth Morris Pratt (KMP) Algorithm
+ * Find occurences of a substring within a string.
+ *
+ */
+function makeLSP(pattern) {
+    let lsp = [];
+    lsp[0] = 0; // Base case
+    for (let i = 1; i < pattern.length; i++) {
+        let j = lsp[i - 1];
+        while (j > 0 && pattern.charAt(i) != pattern.charAt(j)) {
+            j = lsp[j - 1];
+        }
+        if (pattern.charAt(i) === pattern.charAt(j))
+            j++;
+        lsp[i] = j;
+    }
+    return lsp;
+}
+
+function KMPSearch(pattern, text) {
+    let lsp = makeLSP(pattern);
+
+    let j = 0;
+    for(let i = 0; i < text.length; i++) {
+        while( j > 0  && text.charAt(i) !== pattern.charAt(j)){
+            j = lsp[j - 1]
+        }
+        if(text.charAt(i) == pattern.charAt(j)) {
+            // Next char matched, increment position
+            j++;
+            if(j == pattern.length) {
+                return i - (j - 1);
+            }
+        }
+    }
+
+    return -1;
+}
+
 module.exports = {
     linearSearch,
     binarySearch,
-    stringSearch
+    stringSearch,
+    KMPSearch
 }
