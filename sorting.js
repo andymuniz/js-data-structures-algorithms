@@ -21,6 +21,9 @@ function bubbleSort(array) {
     return array;
 }
 
+
+// TIME O(N^2)
+// Only advantage is if we cared about how many swaps we make. Unlikely.
 function selectionSort(arr) {
     for (let i = 0; i < arr.length; i++) {
         let minIdx = i;
