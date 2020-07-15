@@ -4,7 +4,7 @@
   "description": "Studying/Reviewing Data Structures and Algorithms with JavaScript.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest -o"
   },
   "repository": {
     "type": "git",
