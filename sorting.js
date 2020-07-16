@@ -37,7 +37,25 @@ function selectionSort(arr) {
     return arr;
 }
 
+// TIME Worst - O(N^2)
+//      Average - O(N^2)
+//      Best - O(N)
+//      Good with nearly sorted data.
+//      Works with streams.
+function insertionSort(arr) {
+    for (let i = 1; i < arr.length; i++) {
+        let currentVal = arr[i];
+        let j;
+        for (j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
+            arr[j + 1] = arr[j]
+        }
+        arr[j + 1] = currentVal;
+    }
+    return arr
+}
+
 module.exports = {
     bubbleSort,
-    selectionSort
+    selectionSort,
+    insertionSort
 }
