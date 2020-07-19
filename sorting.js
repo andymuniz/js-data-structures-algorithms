@@ -54,8 +54,89 @@ function insertionSort(arr) {
     return arr
 }
 
+// Divide and Conquer
+// Recursive
+// Sort ascending
+// Test [3,2,1]
+// [3] [2, 1]
+// [3] [2] [1]
+// Time O(n log n)
+// Space O(n)
+function mergeSort(arr) {
+    // Base case
+    if (arr.length <= 1) return arr;
+
+    // Split in half
+    let mid, left, right;
+    mid = Math.floor(arr.length / 2);
+    left = mergeSort(arr.slice(0, mid));
+    right = mergeSort(arr.slice(mid));
+
+    return merge(left, right)
+}
+
+// merge two sorted arrays
+// should not mutate parameters
+// Time O(n + m)
+// Space O(n + m)
+function merge(arr1, arr2) {
+    let newArray = [];
+    let i = 0, j = 0;
+    while (i < arr1.length && j < arr2.length) {
+        if (arr1[i] < arr2[j]) {
+            newArray.push(arr1[i])
+            i++;
+        }
+        else {
+            newArray.push(arr2[j])
+            j++;
+        }
+    }
+    while (i < arr1.length) {
+        newArray.push(arr1[i])
+        i++;
+    }
+    while (j < arr2.length) {
+        newArray.push(arr2[j])
+        j++;
+    }
+    return newArray;
+}
+
+function quickSort(arr, left = 0, right = arr.length - 1) {
+    if (left < right) {
+        let pivotIdx = partition(arr, left, right)
+        quickSort(arr, left, pivotIdx - 1)
+        quickSort(arr, pivotIdx + 1, right)
+    }
+    return arr;
+}
+
+// Given an array, should pick a pivot and rearrange elements in the array so that all elements less than
+// pivot are moved to the left of pivot and greater are moved to right of pivot
+// The order of elements on either side of pivot doesn't matter!
+// This should do it in place. Mutate the original array.
+// Should return the index of the pivot
+function partition(arr, start = 0, end = arr.length - 1) {
+    let pivot = arr[start];
+    let swapIdx = start;
+
+    // Swap numbers less than pivot to start;
+    // loop from start to end inclusive
+    for (let i = start; i <= end; i++) {
+        if (pivot > arr[i]) {
+            swapIdx++;
+            swap(arr, swapIdx, i);
+        }
+    }
+    swap(arr, start, swapIdx);
+    return swapIdx;
+}
+
 module.exports = {
     bubbleSort,
     selectionSort,
-    insertionSort
+    insertionSort,
+    mergeSort,
+    quickSort
 }
