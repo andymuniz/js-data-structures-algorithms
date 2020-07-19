@@ -103,6 +103,9 @@ function merge(arr1, arr2) {
     return newArray;
 }
 
+// TIME - O(n log n) Best + Avg , Worst - O(N^2)  => when our pivot is the minimum or max each time
+// N comparisons * log(n) decompositions
+// SPACE - O(log n) -space for decompositions - call stack size
 function quickSort(arr, left = 0, right = arr.length - 1) {
     if (left < right) {
         let pivotIdx = partition(arr, left, right)
@@ -133,10 +136,46 @@ function partition(arr, start = 0, end = arr.length - 1) {
     return swapIdx;
 }
 
+// Special sorting alrgorithm
+// No comparisions, works on number
+// Can compare strings if we convert to numbers
+// TIME BEST + AVG + Worst O(n * k)
+// SPACE O(n + k)
+function radixSort(nums) {
+    let maxDigits = mostDigits(nums);
+    for (let k = 0; k < maxDigits; k++) {
+        let digitBuckets = Array.from({ length: 10 }, () => [])
+        for (let i = 0; i < nums.length; i++) {
+            let digit = getDigit(nums[i], k)
+            digitBuckets[digit].push(nums[i])
+        }
+        nums = [].concat(...digitBuckets);
+    }
+    return nums;
+}
+
+function getDigit(num, place) {
+    return Math.floor(Math.abs(num) / Math.pow(10, place)) % 10;
+}
+
+function digitCount(num) {
+    if (num === 0) return 1;
+    return Math.floor(Math.log10(Math.abs(num))) + 1;
+}
+
+function mostDigits(nums) {
+    let maxDigits = 0;
+    for (let i = 0; i < nums.length; i++) {
+        maxDigits = Math.max(maxDigits, digitCount(nums[i]))
+    }
+    return maxDigits;
+}
+
 module.exports = {
     bubbleSort,
     selectionSort,
     insertionSort,
     mergeSort,
-    quickSort
+    quickSort,
+    radixSort
 }

@@ -1,4 +1,5 @@
-const { bubbleSort, selectionSort, insertionSort, mergeSort, quickSort } = require('../sorting')
+const { bubbleSort, selectionSort, insertionSort,
+    mergeSort, quickSort, radixSort } = require('../sorting')
 
 test('should bubbleSort', () => {
     expect(bubbleSort([0, 1, 2])).toStrictEqual([0, 1, 2])
@@ -21,7 +22,7 @@ test('should insertionSort', () => {
 })
 
 test('should mergeSort', () => {
-    expect(mergeSort([1,0])).toStrictEqual([0,1])
+    expect(mergeSort([1, 0])).toStrictEqual([0, 1])
     expect(mergeSort([0, 1, 2])).toStrictEqual([0, 1, 2])
     expect(mergeSort([1, 2, 0])).toStrictEqual([0, 1, 2])
     expect(mergeSort([37, 45, 29, 8])).toStrictEqual([8, 29, 37, 45])
@@ -29,9 +30,17 @@ test('should mergeSort', () => {
 })
 
 test('should quickSort', () => {
-    expect(quickSort([1,0])).toStrictEqual([0,1])
+    expect(quickSort([1, 0])).toStrictEqual([0, 1])
     expect(quickSort([0, 1, 2])).toStrictEqual([0, 1, 2])
     expect(quickSort([1, 2, 0])).toStrictEqual([0, 1, 2])
     expect(quickSort([37, 45, 29, 8])).toStrictEqual([8, 29, 37, 45])
     expect(quickSort([0, 2, 34, 22, 10, 19, 17])).toStrictEqual([0, 2, 10, 17, 19, 22, 34])
+})
+
+test('should radixSort', () => {
+    expect(radixSort([1, 0])).toStrictEqual([0, 1])
+    expect(radixSort([0, 1, 2])).toStrictEqual([0, 1, 2])
+    expect(radixSort([1, 2, 0])).toStrictEqual([0, 1, 2])
+    expect(radixSort([37, 45, 29, 8])).toStrictEqual([8, 29, 37, 45])
+    expect(radixSort([0, 2, 34, 22, 10, 19, 17])).toStrictEqual([0, 2, 10, 17, 19, 22, 34])
 })
