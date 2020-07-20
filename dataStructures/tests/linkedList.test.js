@@ -1,4 +1,4 @@
-const SinglyLinkedList = require('../linkedList')
+const { SinglyLinkedList } = require('../linkedList')
 
 test('should SinglyLinkedList', () => {
     let list = new SinglyLinkedList();
