@@ -19,3 +19,45 @@ test('should Graph', () => {
     expect(graph.adjacencyList["Hong Kong"]).toBe(undefined)
     expect(graph.adjacencyList["Dallas"]).toStrictEqual([])
 })
+
+test('should DFS', () => {
+    let graph = new Graph()
+    graph.addVertex("A")
+    graph.addVertex("B")
+    graph.addVertex("C")
+    graph.addVertex("D")
+    graph.addVertex("E")
+    graph.addVertex("F")
+
+    graph.addEdge("A", "B")
+    graph.addEdge("A", "C")
+    graph.addEdge("B", "D")
+    graph.addEdge("C", "E")
+    graph.addEdge("D", "E")
+    graph.addEdge("D", "F")
+    graph.addEdge("E", "F")
+    expect(graph.DFSRecursive("A")).toStrictEqual(["A", "B", "D", "E", "C", "F"])
+    expect(graph.DFSIterative("A")).toStrictEqual(["A", "C", "E", "F", "D", "B"])
+})
+
+
+test('should BFS', () => {
+    let graph = new Graph()
+    graph.addVertex("A")
+    graph.addVertex("B")
+    graph.addVertex("C")
+    graph.addVertex("D")
+    graph.addVertex("E")
+    graph.addVertex("F")
+
+    graph.addEdge("A", "B")
+    graph.addEdge("A", "C")
+    graph.addEdge("B", "D")
+    graph.addEdge("C", "E")
+    graph.addEdge("D", "E")
+    graph.addEdge("D", "F")
+    graph.addEdge("E", "F")
+
+    expect(graph.BFS("A")).toStrictEqual(["A", "B", "C", "D", "E", "F"])
+
+})

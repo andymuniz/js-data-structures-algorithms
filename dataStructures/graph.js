@@ -31,6 +31,66 @@ class Graph {
         }
         delete this.adjacencyList[vertex];
     }
+
+    DFSRecursive(start) {
+        const result = []
+        const visited = {}
+        const adjacencyList = this.adjacencyList;
+
+        (function dfs(vertex) {
+            if (!vertex) return null;
+            visited[vertex] = true;
+            result.push(vertex)
+            for(let neighbor of adjacencyList[vertex]){
+                if(!visited[neighbor]){
+                    dfs(neighbor)
+                }
+            }
+        })(start)
+        return result;
+    }
+
+    DFSIterative(start) {
+        let stack = [start];
+        let result = [];
+        let visited = {};
+        let currentVertex;
+
+        visited[start] = true;
+        while(stack.length){
+            currentVertex = stack.pop()
+            result.push(currentVertex);
+
+            for(let neighbor of this.adjacencyList[currentVertex]) {
+                if(!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    stack.push(neighbor)
+                }
+            }
+        }
+        return result;
+    }
+
+    BFS(start) {
+        let queue = [start];
+        let result = []
+        let visited = {}
+        let currentVertex
+
+        visited[start] = true;
+        while(queue.length) {
+            currentVertex = queue.shift()
+            result.push(currentVertex);
+            for(let neighbor of this.adjacencyList[currentVertex]) {
+                if(!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.push(neighbor);
+                }
+            }
+        }
+
+        return result;
+    }
 }
 
 module.exports = Graph;
