@@ -16,3 +16,35 @@ test('should BinarySearchTree', () => {
     expect(tree.find(7).value).toBe(7)
     expect(tree.find(0)).toBe(undefined)
 })
+
+test('should return array of node values', () => {
+    let tree = new BinarySearchTree();
+    expect(tree.BFS()).toStrictEqual([])
+    tree.insert(10)
+    expect(tree.BFS()).toStrictEqual([10])
+    tree.insert(5)
+    tree.insert(15)
+    tree.insert(7)
+    tree.insert(20)
+    tree.insert(9)
+    expect(tree.BFS()).toStrictEqual([10, 5, 15, 7, 20, 9])
+})
+
+test('should return array of node values', () => {
+    let tree = new BinarySearchTree();
+    expect(tree.DFSPreOrder()).toStrictEqual([])
+    expect(tree.DFSInOrder()).toStrictEqual([])
+    expect(tree.DFSPostOrder()).toStrictEqual([])
+    tree.insert(10)
+    expect(tree.DFSPreOrder()).toStrictEqual([10])
+    expect(tree.DFSInOrder()).toStrictEqual([10])
+    expect(tree.DFSPostOrder()).toStrictEqual([10])
+    tree.insert(5)
+    tree.insert(15)
+    tree.insert(7)
+    tree.insert(20)
+    tree.insert(9)
+    expect(tree.DFSPreOrder()).toStrictEqual([10, 5, 7, 9, 15, 20])
+    expect(tree.DFSInOrder()).toStrictEqual([5, 7, 9, 10, 15, 20])
+    expect(tree.DFSPostOrder()).toStrictEqual([9, 7, 5, 20, 15, 10])
+})
